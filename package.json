@@ -15,12 +15,15 @@
     "build:watch": "tsc -p src/ -w",
     "build:upgrade": "tsc",
     "serve:upgrade": "http-server",
-    "build:aot": "ngc -p tsconfig-aot.json && rollup -c rollup-config.js",
+    "build:aot": "ngc -p src/tsconfig-aot.json && rollup -c src/rollup-config.js",
     "serve:aot": "lite-server -c bs-config.aot.json",
     "build:babel": "babel src -d src --extensions \".es6\" --source-maps",
     "copy-dist-files": "node ./copy-dist-files.js",
     "i18n": "ng-xi18n",
-    "lint": "tslint ./src/**/*.ts -t verbose"
+    "lint": "tslint ./src/**/*.ts -t verbose",
+    "ngc": "ngc -p src/tsconfig-aot.json",
+		"rollup": "rollup -c src/rollup-config.js",
+    "source-map": "source-map-explorer src/dist/build.js"
   },
   "keywords": [],
   "author": "",
@@ -40,6 +43,8 @@
     "@angular/upgrade": "~4.0.0",
     "angular-in-memory-web-api": "~0.3.1",
     "core-js": "^2.4.1",
+    "fine-uploader": "^5.14.4",
+    "materialize-css": "^0.98.2",
     "rxjs": "5.0.1",
     "systemjs": "0.19.39",
     "zone.js": "^0.8.4"

@@ -1,20 +1,49 @@
-import { Component, OnInit } from '@angular/core';
 
-import { Hero }        from './hero';
-import { HeroService } from './hero.service';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { FineUploader, UIOptions } from 'fine-uploader'
 
 @Component({
-  selector: 'my-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css' ]
+    selector: 'my-dashboard',
+    templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+export class DashboardComponent implements OnInit, AfterViewInit {
 
-  constructor(private heroService: HeroService) { }
+    constructor() { }
 
-  ngOnInit(): void {
-    this.heroService.getHeroes()
-      .then(heroes => this.heroes = heroes.slice(1, 5));
-  }
+    uploader: FineUploader;
+    uiOptions: UIOptions;
+
+    ngOnInit(): void {
+    }
+
+    ngAfterViewInit(){
+        /**
+         * Prepare/set options for the core + UI FineUploader
+         */
+        this.uiOptions = {
+            debug: false,
+            autoUpload: false,
+            element: document.getElementById('fine-uploader-manual-trigger'),
+            template: "qq-template-manual-trigger",
+            request: {
+                endpoint: "/server/upload"
+            },
+            deleteFile: {
+                enabled: true,
+                endpoint: '/uploads'
+            },
+            retry: {
+                enableAuto: true
+            }
+        };
+
+        /**
+         * Instantiate the FineUploader and pass in the uiOptions
+         */
+        this.uploader = new FineUploader(this.uiOptions);
+    }
+
+    uploadFiles() {
+        this.uploader.uploadStoredFiles();
+    }
 }

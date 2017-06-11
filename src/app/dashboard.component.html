@@ -1,9 +1,87 @@
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes"  [routerLink]="['/detail', hero.id]"  class="col-1-4">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
-    </div>
-  </a>
+<h1>Fine uploader</h1>
+<div class="row right-align">
+    <button type="button" class="btn waves-effect waves-light accent-color" (click)="uploadFiles()"><i class="material-icons left">send</i>Send</button>
 </div>
-<hero-search></hero-search>
+
+<!-- Fine-Uploader selector element -->
+<div id="fine-uploader-manual-trigger"></div>
+
+
+<!-- Fine-Uploader HTML template -->
+<div id="qq-template-manual-trigger" class="hide">
+    <!-- Fine-Uploader dropzone. User can drop files here -->
+    <div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="or drop files here">
+
+        <!-- Select Files Button -->
+        <section class="row">
+            <div class="qq-upload-button-selector btn waves-effect waves-light accent-color">
+                <i class="material-icons left">add</i>Select files
+            </div>
+        </section>
+
+        <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+            <span class="qq-upload-drop-area-text-selector"></span>
+        </div>
+
+        <!-- The list of files to be uploaded are container in this ul element -->
+        <ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
+            <!--
+                The li element includes HTML which represents each single file to be uploaded.
+                The following li element will be repeated for number of files in the UI.
+            -->
+            <li>
+                <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+                <div class="qq-progress-bar-container-selector progress row">
+                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector determinate"></div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col s4 m2 qq-thumbnail-wrapper no-padding-left">
+                        <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale />
+                    </div>
+                    <div class="col s8 m6 qq-file-info">
+                        <div class="qq-file-name row">
+                            <div class="col m2 l1 hide-on-small-only">
+                                <span class="qq-edit-filename-icon-selector btn waves-effect waves-light accent-color tooltipped" data-tooltip="Edit filename"
+                                    data-position="bottom" data-delay="50" aria-label="Edit filename"><i class="material-icons">edit</i></span>
+                            </div>
+                            <div class="col s9 m7 l8">
+                                <span class="qq-upload-file-selector qq-upload-file"></span>
+                                <input type="text" class="qq-edit-filename-selector qq-edit-filename" tabindex="0">
+                            </div>
+                            <div class="col s3 right-align">
+                                <span class="qq-upload-spinner-selector">
+                                    <div class="preloader-wrapper small active">
+                                        <div class="spinner-layer spinner-accent-color-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <label class="qq-upload-size-selector qq-upload-size"></label>
+                    </div>
+                    <div class="col s12 m4 right-align">
+                        <button type="button" class="qq-upload-pause-selector btn waves-effect waves-light accent-color tooltipped" data-tooltip="Pause Upload"
+                            data-position="bottom" data-delay="50"><i class="material-icons">pause</i>
+                        </button>
+                        <button type="button" class="qq-upload-continue-selector btn waves-effect waves-light accent-color tooltipped" data-tooltip="Resume Upload"
+                            data-position="bottom" data-delay="50"><i class="material-icons">play_arrow</i>
+                        </button>
+                        <button type="button" class="qq-upload-retry-selector btn waves-effect waves-light accent-color tooltipped" data-tooltip="Retry"
+                            data-position="bottom" data-delay="50"><i class="material-icons">redo</i>
+                        </button>
+                        <button type="button" class="qq-upload-cancel-selector btn waves-effect waves-light accent-color tooltipped" data-tooltip="Cancel"
+                            data-position="bottom" data-delay="50"><i class="material-icons">cancel</i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
